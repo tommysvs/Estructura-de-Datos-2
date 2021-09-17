@@ -37,6 +37,30 @@ void TablaHash::insertarLlave(int _llave) {
 		cout << "Llave ya existe!";
 }
 
+int TablaHash::buscarLlave(int _llave) {
+	int direccion = dispersion(_llave);
+
+    for(list<int>::iterator i = tabla[direccion].begin(); i != tabla[direccion].end(); i++) {
+        if(_llave == *i)
+            return direccion;
+    }
+
+    return -1;
+}
+
+bool TablaHash::eliminarLlave(int _llave) {
+	int direccion = dispersion(_llave);
+
+    for(list<int>::iterator i = tabla[direccion].begin(); i != tabla[direccion].end(); i++) {
+        if(_llave == *i) {
+            tabla[direccion].erase(i);
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void TablaHash::imprimirTabla() {
 	cout << "Tabla Hash: \n";
 
@@ -44,7 +68,7 @@ void TablaHash::imprimirTabla() {
 		cout << "[ " << i << " ] -> ";
 
 		for (list<int>::iterator it = tabla[i].begin(); it != tabla[i].end(); ++it)
-			cout << *it << " ->";
+			cout << *it << " -> ";
 
 		cout << "\n";
 	}

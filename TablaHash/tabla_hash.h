@@ -9,7 +9,7 @@ using namespace std;
 class TablaHash {
     private:
         int tamanio;
-        int longitudLista; //colisiones
+        int longitudLista;
         vector<list<int>> tabla;
         int dispersion(int);
         bool existeLlave(int, int);
